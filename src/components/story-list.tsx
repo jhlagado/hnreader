@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { getTopStoryIds, getHackerNewsItem } from '../apis';
+import { getTopStoryIds, getStoryItem } from '../apis';
 import { Story } from './story';
 import styled from 'styled-components';
 import { StoryItem, Stylable } from '../types';
@@ -16,13 +16,13 @@ const BaseStoryList = ({ className }: Stylable) => {
       const items: StoryItem[] = [];
       let lowest: StoryItem | null = null;
       for (const id of ids.slice(0, 100)) {
-        getHackerNewsItem(id).then(item => {
+        getStoryItem(id).then(item => {
           if (!mounted || !item) return;
           const story = item as StoryItem;
           if (!lowest) {
             lowest = story;
           }
-          if (story.score > lowest.score) {
+          if (story.score >= lowest.score) {
             items.push(story);
             items.sort(compareFn);
             const topTen = items.slice(0, 10);
@@ -36,8 +36,6 @@ const BaseStoryList = ({ className }: Stylable) => {
       mounted = false;
     };
   }, []);
-
-  // console.log('render story list');
 
   return (
     <div className={`${className} story-list`}>

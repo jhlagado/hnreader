@@ -1,22 +1,29 @@
 import * as React from 'react';
 import { render, cleanup, waitForElement } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
 import { App } from './app';
 import { storyIds, oneStoryItem } from './fixtures';
-import { getTopStoryIds, getHackerNewsItem } from './apis';
+import { getTopStoryIds, getStoryItem } from './apis';
 
 jest.mock('./apis', () => ({
   getTopStoryIds: jest.fn(),
-  getHackerNewsItem: jest.fn()
+  getStoryItem: jest.fn(),
 }));
 
-beforeEach(cleanup);
+beforeEach(() => {
+  cleanup();
+  jest.resetAllMocks();
+});
 
 test('will render app', async () => {
   (getTopStoryIds as any).mockImplementation(() => Promise.resolve(storyIds));
-  (getHackerNewsItem as jest.Mock).mockImplementation(() => Promise.resolve(oneStoryItem));
-  await act(async () => {
-    const { getByText, queryByTestId } = render(<App />);
-    await waitForElement(() => [expect(getByText('Hacker News Reader')).toBeTruthy()]);
-  });
+  (getStoryItem as jest.Mock).mockImplementation((id: number) =>
+    Promise.resolve({
+      ...oneStoryItem,
+      id,
+      score: id ** 2,
+    }),
+  );
+  const { getByText, getAllByText, getAllByTestId } = render(<App />);
+
+  await waitForElement(() => [getByText('Hacker News Reader'), getAllByTestId('id-by'), getAllByText('4 comments')]);
 });

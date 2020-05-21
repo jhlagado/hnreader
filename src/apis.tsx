@@ -12,7 +12,7 @@ export const getTopStoryIds = async () => {
   }
 };
 
-export const getHackerNewsItem = async (id: number) => {
+const getHackerNewsItem = async (id: number) => {
   try {
     const results = await fetch(`${storyUrl}${id}.json`);
     const json = await results.json();
@@ -22,6 +22,6 @@ export const getHackerNewsItem = async (id: number) => {
   }
 };
 
-export const getStoryItem = async (id: number) => getHackerNewsItem(id);
+export const getStoryItem = getHackerNewsItem;
 
-export const getCommentItem = async (id: number) => getHackerNewsItem(id);
+export const getCommentItem = getHackerNewsItem;

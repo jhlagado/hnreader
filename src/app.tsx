@@ -12,7 +12,6 @@ export const App: React.FC<any> = () => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
-    console.log({ active: open });
     setOpen(!open);
   };
 

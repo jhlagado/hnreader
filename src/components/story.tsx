@@ -25,7 +25,6 @@ const BaseStory = ({ item, className }: StoryProps) => {
         const comments = items.filter(item => !!item) as CommentItem[];
         if (!items) return;
         setLoading(false);
-        console.log({ comments });
         if (!mounted || !item) return;
         setComments(comments);
       });
@@ -39,15 +38,15 @@ const BaseStory = ({ item, className }: StoryProps) => {
     setShowComments(!showComments);
   };
 
-  // console.log('render story');
-
   return item && item.type === 'story' ? (
     <div className={`${className} story`}>
       <h2 className="story-heading content-subhead">
-        <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
+        <a href={item.url} target="_blank" rel="noreferrer">
+          {item.title}
+        </a>
       </h2>
       <div className="story-footer">
-        {item.score} points by {item.by} {formatDate(item.time)}{' '}
+        {item.score} points by <span data-testid="id-by">{item.by}</span> {formatDate(item.time)}{' '}
         <button onClick={handleClick}>{loading ? 'Loading...' : `${item.kids.length} comments`}</button>
       </div>
       <div className="comment-list">

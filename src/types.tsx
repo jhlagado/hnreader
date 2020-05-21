@@ -12,18 +12,19 @@ export type Stylable = StyledProps<{
 export interface HackerNewsItem {
   by: string;
   id: number;
-  kids: number[];
   time: number;
   type: string;
 }
 
 export interface CommentItem extends HackerNewsItem {
+  kids?: number[];
   parent: number;
   text: string;
 }
 
 export interface StoryItem extends HackerNewsItem {
   descendants: number;
+  kids: number[];
   score: number;
   title: string;
   url: string;

@@ -9,12 +9,11 @@ interface CommentProps extends Stylable {
 }
 
 const BaseComment = ({ item, className }: CommentProps) => {
-  console.log('render comment');
   return item.type === 'comment' ? (
-    <div className={`${className} comment`}>
+    <div className={`${className} comment`} data-testid="id-comment">
       <div>{item && <div dangerouslySetInnerHTML={{ __html: item.text }} />}</div>
       <div className="comment-footer">
-        by {item.by} {formatDate(item.time)}
+        by <span data-testid="id-by">{item.by}</span> {formatDate(item.time)}
       </div>
     </div>
   ) : null;
