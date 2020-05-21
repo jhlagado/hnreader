@@ -60,5 +60,7 @@ export const Story = styled(BaseStory)`
   button {
     margin: 0.5rem;
     font-size: 75%;
+    position: relative;
+    top: -3px;
   }
 `;

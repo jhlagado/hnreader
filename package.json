@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.ts* --fix",
-    "start": "parcel ./src/index.html --port 1334",
+    "start": "parcel ./src/index.html --port 1334 --open",
     "stubs": "node ./stubby/index.js",
     "build": "parcel build ./src/index.html --public-url '/items'",
     "test": "npm run lint && jest --coverage",
