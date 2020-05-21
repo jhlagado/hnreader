@@ -1,3 +1,2 @@
-# TS Boilerplate
+# Hacker News Reader
 
-Based on work by [John Hardy](https://github.com/jhlagado). Thanks John love your work.
