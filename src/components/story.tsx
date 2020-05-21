@@ -47,7 +47,7 @@ const BaseStory = ({ item, className }: StoryProps) => {
       </h2>
       <div className="story-footer">
         {item.score} points by <span data-testid="id-by">{item.by}</span> {formatDate(item.time)}{' '}
-        <button onClick={handleClick}>{loading ? 'Loading...' : `${item.kids.length} comments`}</button>
+        <button className="pure-button pure-button-primary" onClick={handleClick}>{loading ? 'Loading...' : `${item.kids.length} comments`}</button>
       </div>
       <div className="comment-list">
         {showComments && comments?.map(comment => <Comment key={comment.id} item={comment} />)}
@@ -56,4 +56,9 @@ const BaseStory = ({ item, className }: StoryProps) => {
   ) : null;
 };
 
-export const Story = styled(BaseStory)``;
+export const Story = styled(BaseStory)`
+  button {
+    margin: 0.5rem;
+    font-size: 75%;
+  }
+`;
