@@ -9,7 +9,12 @@ beforeEach(() => {
 });
 
 test('will render comment', async () => {
-  const { getByText, getAllByTestId } = render(<Comment item={oneCommentItem} />);
+  const { getByText, getAllByTestId } = render(
+    <Comment item={oneCommentItem} />,
+  );
 
-  await waitForElement(() => [getByText('https://github.com/samyk/poisontap'), getAllByTestId('id-by')]);
+  await waitForElement(() => [
+    getByText('https://github.com/samyk/poisontap'),
+    getAllByTestId('id-by'),
+  ]);
 });

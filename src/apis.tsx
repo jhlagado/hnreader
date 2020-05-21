@@ -1,5 +1,5 @@
 import { HackerNewsItem } from './types';
-import {topStoriesUrl, storyUrl} from './constants';
+import { topStoriesUrl, storyUrl } from './constants';
 
 export const getTopStoryIds = async () => {
   try {

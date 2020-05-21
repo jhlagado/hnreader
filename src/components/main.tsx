@@ -7,7 +7,7 @@ import { ScrollToTop } from '../utils';
 const BaseMain = () => {
   return (
     <div id="main">
-      <ScrollToTop/>
+      <ScrollToTop />
       <div className="header">
         <h1>Hacker News Reader</h1>
         <h2>Smoother on the eyes</h2>

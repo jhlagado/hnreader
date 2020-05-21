@@ -26,7 +26,10 @@ const BaseStoryList = ({ className }: Stylable) => {
             items.push(story);
             items.sort(compareFn);
             const topTen = items.slice(0, 10);
-            lowest = topTen.reduce((acc, item) => (item.score < acc.score ? item : acc), items[0]);
+            lowest = topTen.reduce(
+              (acc, item) => (item.score < acc.score ? item : acc),
+              items[0],
+            );
             setTopStories(topTen);
           }
         });

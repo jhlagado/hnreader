@@ -25,5 +25,9 @@ test('will render app', async () => {
   );
   const { getByText, getAllByText, getAllByTestId } = render(<App />);
 
-  await waitForElement(() => [getByText('Hacker News Reader'), getAllByTestId('id-by'), getAllByText('4 comments')]);
+  await waitForElement(() => [
+    getByText('Hacker News Reader'),
+    getAllByTestId('id-by'),
+    getAllByText('4 comments'),
+  ]);
 });

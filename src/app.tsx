@@ -21,7 +21,12 @@ export const App: React.FC<any> = () => {
       <GlobalStyle />
       <ThemeProvider theme={customTheme}>
         <div id="layout" className={openClass}>
-          <a href="#menu" id="menuLink" className={`menu-link ${openClass}`} onClick={handleClick}>
+          <a
+            href="#menu"
+            id="menuLink"
+            className={`menu-link ${openClass}`}
+            onClick={handleClick}
+          >
             <span></span>
           </a>
           <Router>

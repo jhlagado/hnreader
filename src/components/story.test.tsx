@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { render, cleanup, waitForElement, fireEvent } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  waitForElement,
+  fireEvent,
+} from '@testing-library/react';
 import { Story } from './story';
 import { oneCommentItem, oneStoryItem } from '../fixtures';
 import { getCommentItem } from '../apis';
@@ -21,9 +26,15 @@ test('will render app', async () => {
       score: id ** 2,
     }),
   );
-  const { getByText, getAllByText, getAllByTestId } = render(<Story item={oneStoryItem} />);
+  const { getByText, getAllByText, getAllByTestId } = render(
+    <Story item={oneStoryItem} />,
+  );
 
-  await waitForElement(() => [getByText('What Is Nix?'), getAllByTestId('id-by'), getAllByText('4 comments')]);
+  await waitForElement(() => [
+    getByText('What Is Nix?'),
+    getAllByTestId('id-by'),
+    getAllByText('4 comments'),
+  ]);
   const button = getByText('4 comments');
   fireEvent.click(button);
   await waitForElement(() => [getAllByTestId('id-comment')]);

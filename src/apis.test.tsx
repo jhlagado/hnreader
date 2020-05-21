@@ -11,7 +11,9 @@ beforeEach(() => {
 });
 
 test('will fetch top story ids', async () => {
-  (fetch as jest.Mock).mockImplementation(() => Promise.resolve({ json: () => Promise.resolve({ x: 123 }) }));
+  (fetch as jest.Mock).mockImplementation(() =>
+    Promise.resolve({ json: () => Promise.resolve({ x: 123 }) }),
+  );
 
   await getTopStoryIds();
 
@@ -20,7 +22,9 @@ test('will fetch top story ids', async () => {
 });
 
 test('will fetch story', async () => {
-  (fetch as jest.Mock).mockImplementation(() => Promise.resolve({ json: () => Promise.resolve({ x: 123 }) }));
+  (fetch as jest.Mock).mockImplementation(() =>
+    Promise.resolve({ json: () => Promise.resolve({ x: 123 }) }),
+  );
 
   await getStoryItem(2);
 

@@ -6,7 +6,7 @@ import { ScrollToTop } from '../utils';
 const BaseInfo = ({ className }: Stylable) => {
   return (
     <div className={`${className} info`}>
-      <ScrollToTop/>
+      <ScrollToTop />
       <div className="header">
         <h1>John Hardy</h1>
         <h2>Full-stack developer</h2>
