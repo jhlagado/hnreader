@@ -7,33 +7,21 @@ import { StoryItem, Stylable } from '../types';
 
 const compareFn = (a: StoryItem, b: StoryItem) => b.score - a.score;
 
-const BaseStoryList = ({ className }: Stylable) => {
+const BaseFTStoryList = ({ className }: Stylable) => {
   const [topStories, setTopStories] = useState<StoryItem[]>([]);
 
   useEffect(() => {
     let mounted = true;
     getTopStoryIds().then(ids => {
       const items: StoryItem[] = [];
-      let lowest: StoryItem | null = null;
-      for (const id of ids.slice(0, 100)) {
-        getStoryItem(id).then(item => {
-          if (!mounted || !item) return;
-          const story = item as StoryItem;
-          if (!lowest) {
-            lowest = story;
-          }
-          if (story.score >= lowest.score) {
-            items.push(story);
-            items.sort(compareFn);
-            const topTen = items.slice(0, 10);
-            lowest = topTen.reduce(
-              (acc, item) => (item.score < acc.score ? item : acc),
-              items[0],
-            );
-            setTopStories(topTen);
-          }
-        });
-      }
+      ids.slice(0, 10).forEach(async id => {
+        const item = await getStoryItem(id);
+        if (!mounted || !item) return;
+        const story = item as StoryItem;
+        items.push(story);
+        items.sort(compareFn);
+        setTopStories([...items]);
+      });
     });
     return () => {
       mounted = false;
@@ -51,4 +39,4 @@ const BaseStoryList = ({ className }: Stylable) => {
   );
 };
 
-export const StoryList = styled(BaseStoryList)``;
+export const FTStoryList = styled(BaseFTStoryList)``;

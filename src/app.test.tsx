@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { render, cleanup, waitForElement } from '@testing-library/react';
+import {
+  render,
+  cleanup,
+  waitForElement,
+  fireEvent,
+} from '@testing-library/react';
 import { App } from './app';
 import { storyIds, oneStoryItem } from './fixtures';
 import { getTopStoryIds, getStoryItem } from './apis';
@@ -23,11 +28,20 @@ test('will render app', async () => {
       score: id ** 2,
     }),
   );
-  const { getByText, getAllByText, getAllByTestId } = render(<App />);
+  const { getByText, getAllByText, getAllByTestId, getByTestId } = render(<App />);
 
+  const hambMenuItem = getByTestId('menu-link');
+  const ftMenuItem = getByText('First Top Ten');
+  const infoMenuItem = getByText('Info');
+
+  fireEvent.click(hambMenuItem);
   await waitForElement(() => [
-    getByText('Hacker News Reader'),
+    getByText('Top ten stories'),
     getAllByTestId('id-by'),
     getAllByText('4 comments'),
   ]);
+  fireEvent.click(ftMenuItem);
+  await waitForElement(() => [getByText('First ten top stories')]);
+  fireEvent.click(infoMenuItem);
+  await waitForElement(() => [getByText('Full-stack developer')]);
 });

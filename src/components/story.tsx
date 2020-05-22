@@ -52,7 +52,7 @@ const BaseStory = ({ item, className }: StoryProps) => {
           className="pure-button pure-button-primary"
           onClick={handleClick}
         >
-          {loading ? 'Loading...' : `${item.kids.length} comments`}
+          {loading ? 'Loading...' : `${item.kids?.length} comments`}
         </button>
       </div>
       <div className="comment-list">
